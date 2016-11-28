@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   var date = new Date().toString();
   var log = `${date}: ${req.method} ${req.url}`
 
-  console.log(log);
+  if (process.env.NODE_ENV !== 'test') console.log(log);
   fs.appendFile('server.log', log + '\n', (error) => {
     if (error) {
       console.log('Unable to write in server.log.');

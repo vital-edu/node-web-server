@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "autostart": "nodemon server.js",
-    "test": "mocha",
-    "test-watch": "nodemon -x 'mocha'",
+    "test": "NODE_ENV=test mocha",
+    "test-watch": "NODE_ENV=test nodemon -x 'mocha'",
     "start": "node server.js"
   },
   "author": "Eduardo Vital Alencar Cunha",
