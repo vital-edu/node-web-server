@@ -3,28 +3,35 @@ const hbs = require('hbs');
 const fs = require('fs');
 
 const port = process.env.PORT || 3000;
+const env = process.env.NODE_ENV || 'dev';
+const maintenance = process.env.MAINTENANCE || false;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
-app.use((req, res, next) => {
-  var date = new Date().toString();
-  var log = `${date}: ${req.method} ${req.url}`
+if (env === 'dev') {
+  app.use((req, res, next) => {
+    var date = new Date().toString();
+    var log = `${date}: ${req.method} ${req.url}`
 
-  if (process.env.NODE_ENV !== 'test') console.log(log);
-  fs.appendFile('server.log', log + '\n', (error) => {
-    if (error) {
-      console.log('Unable to write in server.log.');
-      console.log('Error: ' + error);
-    }
+    console.log(log);
+    fs.appendFile('server.log', log + '\n', (error) => {
+      if (error) {
+        console.log('Unable to write in server.log.');
+        console.log('Error: ' + error);
+      }
+    });
+    next();
   });
-  next();
-});
+};
 
-// app.use((req, res, next) => {
-//   res.render('maintenance.hbs');
-// });
+if (maintenance) {
+  app.use((req, res, next) => {
+    res.render('maintenance.hbs');
+  });
+}
 
 app.use(express.static(__dirname + '/public'));
 
@@ -56,7 +63,7 @@ app.get('/bad', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
+  if (env === 'dev') console.log(`Server is up on port ${port}`);
 });
 
 module.exports.app = app;
