@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "autostart": "nodemon server.js",
-    "test": "jest",
-    "test-watch": "nodemon -x 'jest'",
+    "test": "mocha",
+    "test-watch": "nodemon -x 'mocha'",
     "start": "node server.js"
   },
   "author": "Eduardo Vital Alencar Cunha",
@@ -17,16 +17,8 @@
     "hbs": "^4.0.1"
   },
   "devDependencies": {
-    "jest": "^17.0.3",
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
     "supertest": "^2.0.1"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/*.js",
-      "!**/coverage/**",
-      "!**/node_modules/**"
-    ]
   }
 }

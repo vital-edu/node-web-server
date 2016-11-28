@@ -58,3 +58,5 @@ app.get('/bad', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
 });
+
+module.exports.app = app;
