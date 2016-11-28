@@ -31,8 +31,24 @@ To use the application, execute the command:
 $ npm start
 ```
 
+If you prefer that the server restarts automatically when changes happens, execute the command:
+
+```
+$ npm run autostart
+```
+
 After the server start, access the site at http://localhost:3000/
 
 ##  4. <a name='Testing'></a>Testing
 
-Unfortunately, there are no tests.
+To run the tests just once, execute the command:
+
+```
+$ npm test
+```
+
+If you prefer that the tests run automatically when changes happens, execute the command:
+
+```
+$ npm run test-watch
+```

@@ -2,10 +2,12 @@
   "name": "node-web-server",
   "version": "1.0.0",
   "description": "Simple web server made with Express.js",
-  "main": "index.js",
+  "main": "server.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "autostart": "nodemon server.js",
+    "test": "jest",
+    "test-watch": "nodemon -x 'jest'",
     "start": "node server.js"
   },
   "author": "Eduardo Vital Alencar Cunha",
@@ -13,5 +15,18 @@
   "dependencies": {
     "express": "^4.14.0",
     "hbs": "^4.0.1"
+  },
+  "devDependencies": {
+    "jest": "^17.0.3",
+    "supertest": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/coverage/**",
+      "!**/node_modules/**"
+    ]
   }
 }
